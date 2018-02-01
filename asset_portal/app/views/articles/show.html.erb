@@ -1,0 +1,17 @@
+<div class="article">
+
+  <span>
+    <%= @article.title %>
+  </span>
+  <br/>
+  <% @article.authors.each do |author| %>
+    <%= link_to "[#{author.person.last_name}, #{author.person.first_name}]", author_path(author.id) %>
+  <% end %>
+  <br/>
+  <span>
+    Abstract
+  </span>
+  <p>
+    <%= @article.abstract %>
+  </p>
+</div>

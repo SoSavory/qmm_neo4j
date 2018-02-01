@@ -1,0 +1,182 @@
+<div id="horizontal_menu" class="menu">
+  <a class="logo" href="/">QMM</a>
+
+    <form id="search_form">
+      <input id="search_bar" type="text" placeholder="Search" autofocus></input>
+      <div id="under_search_bar">
+        <div id="under_search_bar_content">
+          <div class="search_category">
+            <span class="first">Interaction</span>
+
+            <label class="check_container">Zero Range
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Finite Range
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Dipole
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Long Range
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Unspecified
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+          </div>
+
+          <div class="search_category">
+            <span class="first">Spatial Dimension</span>
+            <label class="check_container">1
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">2
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">3
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Unspecified
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+          </div>
+
+          <div class="search_category">
+            <span class="first">External Potential</span>
+
+            <label class="check_container">None
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Lattice
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Harmonic
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Unspecified
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+          </div>
+
+          <div class="search_category">
+            <span class="first">Statistics Type</span>
+
+            <label class="check_container">Fermi
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Bose
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Boltzmann
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Unspecified
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+          </div>
+
+          <div class="search_category">
+            <span class="first">Temperature</span>
+
+            <label class="check_container">Zero
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Finite
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Unspecified
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+          </div>
+
+          <div class="search_category">
+            <span class="first">Particle Number</span>
+
+            <label class="check_container">Few
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Many
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+
+            <label class="check_container">Unspecified
+              <input type="checkbox">
+              <span class="checkmark">
+            </label>
+          </div>
+
+        </div>
+        <div id="bottom">
+          <a class="button yellow" href="#">Cancel</a>
+          <a class="button red" href="#">Clear</a>
+          <a class="button green" href="#">Submit</a>
+        </div>
+      </div>
+    </form>
+
+</div>
+
+<script>
+
+  var search_shown = 0;
+
+  $("#search_form").on("mouseenter", function(){
+    var search_rect = document.getElementById('search_bar').getBoundingClientRect();
+    $("#under_search_bar").css("top", search_rect.bottom);
+    $("#under_search_bar").show();
+    search_shown = 1;
+  });
+
+  $("#search_form").on("mouseleave", function(){
+    $("#under_search_bar").hide();
+    search_shown = 0;
+  })
+
+  $("#search_form").on("keypress", function(){
+    if(search_shown == 0){
+      var search_rect = document.getElementById('search_bar').getBoundingClientRect();
+      $("#under_search_bar").css("top", search_rect.bottom);
+      $("#under_search_bar").show();
+      search_shown = 1;
+    }
+  })
+</script>

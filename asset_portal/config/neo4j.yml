@@ -1,0 +1,6 @@
+development:
+  type: bolt
+  url: bolt://neo4j:avery1234@localhost:7687
+test:
+  type: http
+  url: http://localhost:7575

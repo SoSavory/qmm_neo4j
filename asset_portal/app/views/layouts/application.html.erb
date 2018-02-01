@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quantum Matter Mapper</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'layouts/horizontal_menu' %>
+    <div id="after_horizontal">
+
+      <%= render 'layouts/vertical_menu' %>
+      <!-- <div class='invisible_vertical_block'></div> -->
+      <div id="content">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

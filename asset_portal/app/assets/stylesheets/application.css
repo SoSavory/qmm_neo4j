@@ -1,0 +1,322 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *COLORS: https://coolors.co/3a405a-f9dec9-4281a4-a54657-48a9a6
+
+
+ *= require_tree .
+ *= require_self
+ */
+
+html, body{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: Roboto, Arial, sans-serif;
+  background-color: #FAFAFA;
+  color: #777;
+}
+
+a{
+  text-decoration: none;
+}
+
+p:hover{
+  color: black;
+}
+
+
+/* Menu Stuff */
+
+#horizontal_menu{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 12.5%;
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.19);
+  align-items: center;
+  justify-content: space-between;
+}
+
+#horizontal_menu a.logo{
+  font-size: 2em;
+  font-weight: bold;
+  margin-left: 1em;
+  color: #4281A4;
+}
+
+#search_form{
+  height: 100%;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#search_bar{
+  box-sizing: border-box;
+  padding: 0.6em;
+  outline: none;
+  line-height: 1.5em;
+  border: 1px solid #08244A;
+  width: 87%;
+  font-size: 1.2em;
+}
+
+#under_search_bar{
+  display: none;
+  position: fixed;
+  width: 69.7%;
+  height: 300px;
+  background-color: rgba(48,51,58,0.98);
+  z-index: 1;
+
+}
+
+#under_search_bar_content{
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#under_search_bar_content .search_category{
+  display: flex;
+  flex-direction: column;
+
+}
+
+#under_search_bar_content .search_category span{
+  color: white;
+  text-align: center;
+}
+
+#under_search_bar_content .search_category span.first{
+  color: white;
+  font-weight: 400;
+  line-height: 1.5;
+  padding-bottom: 15px;
+}
+
+
+.search_category .check_container{
+  weight: 300;
+  line-height: 1.4;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  color: rgb(210, 213, 218);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.search_category .check_container:hover{
+  color: white;
+}
+
+.search_category .check_container input{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.search_category .check_container .checkmark{
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  background-color: rgba(48,51,58,0.98);
+  border: 1px solid #616877;
+}
+
+.search_category .check_container:hover input ~ .checkmark{
+  cursor: pointer;
+}
+
+.search_category input:checked ~ .checkmark{
+
+}
+
+.search_category .check_container .checkmark:after{
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.search_category .check_container input:checked ~ .checkmark:after{
+  display: block;
+}
+
+.search_category .check_container .checkmark:after {
+  left: 1px;
+  top: 1px;
+  border: solid rgba(71,229,188, 0.98);
+  border-width: 4px;
+  border-radius: 4px;
+}
+
+#under_search_bar #bottom{
+  position: relative;
+  float: right;
+  margin-right: 1em;
+}
+
+#under_search_bar #bottom .button{
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  padding: 1em;
+  opacity: 0.9;
+  color: white;
+  -webkit-appearance: none;
+}
+
+#under_search_bar #bottom .button:hover{
+  opacity: 1;
+}
+
+#under_search_bar #bottom .yellow{
+  background-color: #DBAB01;
+}
+
+#under_search_bar #bottom .green{
+  background-color: #48A9A6;
+}
+
+#under_search_bar #bottom .red{
+  background-color: #A54657;
+}
+
+
+
+#after_horizontal{
+  display:flex;
+  flex-direction: row;
+  height: 87%;
+  justify-content: space-between;
+}
+
+#vertical_menu{
+
+  display: flex;
+  flex-direction: column;
+  width: 12.5%;
+  min-height: 87%;
+  background-color: #F5F5F5;
+  box-shadow: 2px 0px 4px rgba(0,0,0,0.19);
+
+}
+
+.menu ul{
+  display: flex;
+  list-style: none;
+  text-decoration: none;
+
+}
+
+.menu ul li{
+  padding: 1em;
+}
+
+#horizontal_menu form{
+  margin: 0 1em 0 0;
+  padding: 0;
+}
+
+#horizontal_menu ul li{
+  display: block;
+  padding: 0.5em;
+}
+
+#horizontal_menu ul li a{
+  color: #016FB9;
+}
+
+#horizontal_menu ul li a:hover{
+  border-bottom: 3px solid #016FB9;
+}
+
+#vertical_menu ul{
+  flex-direction: column;
+  margin: 1em 0 0 1.5em;
+  padding: 0;
+}
+
+#vertical_menu ul li{
+  display: block;
+}
+
+#vertical_menu ul li a{
+  color: #777;
+  padding: 0.5em;
+}
+
+#vertical_menu ul li a:hover{
+  background-color: #e1e1e1;
+  border-radius: 3px;
+}
+
+/* Content */
+
+#content{
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  width: 81%;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+#search_results{
+
+}
+
+.search_result{
+  width: 80%;
+  padding: 1em;
+  display: block;
+}
+
+.search_result:hover{
+  color: black;
+}
+
+.search_result a{
+  width: 100%;
+  color: #016FB9;
+  text-decoration: none;
+}
+
+.search_result a:hover{
+  text-decoration: underline;
+  background-color: #FCFAF9;
+}
+
+.search_result a.author{
+  font-weight: bold;
+  color: #777;
+  font-style: italic;
+  text-decoration: none;
+}
+
+.search_result a.author:hover{
+  color: #016FB9;
+  text-decoration: underline;
+}

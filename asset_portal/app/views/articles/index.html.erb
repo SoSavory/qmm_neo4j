@@ -1,0 +1,12 @@
+<div id="search_results">
+  <% @articles.each do |article| %>
+    <div class="search_result">
+      <%= link_to article.title, article_path(article.id) %>
+      <br>
+      <% article.authors.each do |author| %>
+        <%= link_to "[#{author.person.last_name}, #{author.person.first_name}]", author_path(author.id) %>
+      <% end %>
+      <div class="abstract"><%= article.abstract%></div>
+    </div>
+  <% end %>
+</div>
