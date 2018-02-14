@@ -45,7 +45,7 @@ p:hover{
   background-color: white;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.19);
   align-items: center;
-  justify-content: space-between;
+
 }
 
 #horizontal_menu a.logo{
@@ -57,7 +57,7 @@ p:hover{
 
 #search_form{
   height: 100%;
-  width: 80%;
+  width: 69.6%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -69,14 +69,14 @@ p:hover{
   outline: none;
   line-height: 1.5em;
   border: 1px solid #08244A;
-  width: 87%;
+  width: 90%;
   font-size: 1.2em;
 }
 
 #under_search_bar{
   display: none;
   position: fixed;
-  width: 69.7%;
+  width: 62.5%;
   height: 300px;
   background-color: rgba(48,51,58,0.98);
   z-index: 1;
@@ -236,7 +236,7 @@ p:hover{
 }
 
 #horizontal_menu form{
-  margin: 0 1em 0 0;
+  margin: 0 1em 0 10%;
   padding: 0;
 }
 
@@ -319,4 +319,15 @@ p:hover{
 .search_result a.author:hover{
   color: #016FB9;
   text-decoration: underline;
+}
+
+.search_side_link{
+  color: #016FB9;
+  text-decoration: none;
+  padding-left: 0.25em;
+}
+
+.search_side_link:hover{
+  text-decoration: underline;
+  background-color: #FCFAF9;
 }

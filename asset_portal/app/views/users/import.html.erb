@@ -1,0 +1,7 @@
+You can upload XML files from Arxiv here.
+
+<%= form_for(@import, url: parse_import_path) do |f| %>
+  <%= f.file_field :import %>
+  <br/>
+  <%= f.submit "Upload" %>
+<% end %>

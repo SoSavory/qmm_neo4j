@@ -1,0 +1,8 @@
+<h3><%= "#{@person.first_name} #{@person.last_name}" %></h3>
+
+<span>Articles: <%= @articles.count %></span>
+<br/>
+<span>Institutions:</span>
+<% @authors.each do |author| %>
+  <%= author.institution %>
+<% end %>

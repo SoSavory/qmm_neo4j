@@ -28,10 +28,7 @@
               <span class="checkmark">
             </label>
 
-            <label class="check_container">Unspecified
-              <input type="checkbox">
-              <span class="checkmark">
-            </label>
+
 
           </div>
 
@@ -52,10 +49,7 @@
               <span class="checkmark">
             </label>
 
-            <label class="check_container">Unspecified
-              <input type="checkbox">
-              <span class="checkmark">
-            </label>
+
           </div>
 
           <div class="search_category">
@@ -76,10 +70,7 @@
               <span class="checkmark">
             </label>
 
-            <label class="check_container">Unspecified
-              <input type="checkbox">
-              <span class="checkmark">
-            </label>
+
           </div>
 
           <div class="search_category">
@@ -100,10 +91,7 @@
               <span class="checkmark">
             </label>
 
-            <label class="check_container">Unspecified
-              <input type="checkbox">
-              <span class="checkmark">
-            </label>
+
           </div>
 
           <div class="search_category">
@@ -119,10 +107,7 @@
               <span class="checkmark">
             </label>
 
-            <label class="check_container">Unspecified
-              <input type="checkbox">
-              <span class="checkmark">
-            </label>
+
           </div>
 
           <div class="search_category">
@@ -138,10 +123,7 @@
               <span class="checkmark">
             </label>
 
-            <label class="check_container">Unspecified
-              <input type="checkbox">
-              <span class="checkmark">
-            </label>
+
           </div>
 
         </div>
@@ -152,7 +134,15 @@
         </div>
       </div>
     </form>
-
+    <div style="display: flex; flex-direction: row; width: 10%; justify-content: space-between;">
+      <% if logged_in? %>
+        <%= link_to "My Account", user_path(current_user.id), class: "search_side_link" %>
+        <%= link_to "Log Out", logout_path, method: :delete, class: "search_side_link" %>
+      <% else %>
+        <%= link_to "Log In", login_path, class: "search_side_link" %>
+        <%= link_to "Register", new_user_path, class: "search_side_link" %>
+      <% end %>
+    </div>
 </div>
 
 <script>
