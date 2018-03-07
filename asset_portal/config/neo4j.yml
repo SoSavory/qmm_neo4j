@@ -4,3 +4,6 @@ development:
 test:
   type: http
   url: http://localhost:7575
+production:
+  type: bolt
+  url: bolt://neo4j:qmm_password@localhost:7687

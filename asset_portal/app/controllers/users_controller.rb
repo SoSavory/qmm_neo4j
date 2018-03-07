@@ -47,7 +47,7 @@ class UsersController < ApplicationController
       short_identifier = record.css('metadata arXivRaw id').text
       unless RawArticle.where(short_arxiv_identifier: short_identifier).exists?
 
-        arxiv_identifier = record.css('header identifier')
+        arxiv_identifier = record.css('header identifier').text
         datestamp  = record.css('header datestamp').text.to_date
         submitter  = record.css('metadata arXivRaw submitter').text
         title      = record.css('metadata arXivRaw title').text

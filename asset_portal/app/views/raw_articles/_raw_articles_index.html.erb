@@ -1,0 +1,9 @@
+
+  <% @raw_articles.each do |raw_article| %>
+    <div class="search_result">
+      <%= link_to raw_article.title, raw_article_path(raw_article.id) %>
+      <br>
+      <%= raw_article.authors %>
+      <div class="abstract"><%= raw_article.abstract%></div>
+    </div>
+  <% end %>

@@ -1,0 +1,29 @@
+<div id="search_results">
+  <%= render 'raw_articles_index' %>
+</div>
+<div id="raw_articles_pagination_container" class="pagination_container">
+</div>
+<script type="text/javascript">
+  getPaginationSplines("raw_article",
+    function(data){
+      for (let i = 0; i < Math.ceil(data/10); i++){
+        $('#raw_articles_pagination_container').append(
+          '<a class="pagination_link" onclick="event.preventDefault();updateIndex(' + i + ');">' + String(i+1) + '</a>'
+        )
+      }
+    },
+    function(data){
+      console.log("Something Went Wrong");
+    }
+  );
+
+  function updateIndex(spline){
+    $.ajax({
+      method: 'GET',
+      url: "http://localhost:3000/raw_articles?ajax=true&raw_article_spline=" + spline,
+      success: function( response ){
+        $("#search_results").html(response);
+      }
+    })
+  }
+</script>
