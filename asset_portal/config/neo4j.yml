@@ -1,9 +1,9 @@
 development:
   type: bolt
-  url: bolt://neo4j:avery1234@localhost:7687
+  url: bolt://neo4j:avery1234@localhost:7000
 test:
   type: http
   url: http://localhost:7575
 production:
   type: bolt
-  url: bolt://neo4j:qmm_password@localhost:7000
+  url: bolt://neo4j:qmm_password@localhost:7687
