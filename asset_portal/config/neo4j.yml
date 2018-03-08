@@ -6,4 +6,4 @@ test:
   url: http://localhost:7575
 production:
   type: bolt
-  url: bolt://neo4j:qmm_password@127.0.0.1:7472
+  url: bolt://neo4j:qmm_password@localhost:7472
