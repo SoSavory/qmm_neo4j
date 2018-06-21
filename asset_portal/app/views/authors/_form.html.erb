@@ -1,0 +1,15 @@
+<% authors_count = params[:count] || 0 %>
+<div class="author_fields">
+<div>
+  <label for="article_curating_authors_person_first_name">First name</label>
+  <input type="text" name="article[curating_authors][<%= authors_count %>][person][first_name]"/>
+</div>
+<div>
+  <label for="article_curating_authors_person_last_name">Last name</label>
+  <input type="text" name="article[curating_authors][<%= authors_count %>][person][last_name]"/>
+</div>
+<div>
+  <label for="article_curating_authors_institution">Institution</label>
+  <input type="text" name="article[curating_authors][<%= authors_count %>][institution]"/>
+</div>
+</div>

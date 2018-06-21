@@ -7,7 +7,7 @@ class RawArticlesController < ApplicationController
   end
 
   def index
-    @raw_articles = RawArticle.where(importer: current_user).limit(10).offset(10*params[:raw_article_spline].to_i)
+    @raw_articles = current_user.imports(:i).where("NOT((i)-[:ARTICLE]->())").limit(10).offset(10*params[:raw_article_spline].to_i)
     if params[:ajax] == "true"
       render partial: "raw_articles_index", layout: false
     end
@@ -17,13 +17,27 @@ class RawArticlesController < ApplicationController
     raw_article = RawArticle.find(params[:id])
     if raw_article.importer == current_user
       @raw_article = raw_article
+      @tag_groups = TagGroup.all.with_associations(:tags)
+      @article = Article.new()
     else
       redirect_to login_path
     end
   end
 
+  def curate_raw_article
+    if current_user.role_includes?(:librarian)
+      @raw_article = RawArticle.find(params[:id])
+      if @raw_article.importer == current_user
+        @article = Article.new()
+      end
+    end
+  end
+
   def curate
-    article = Article.new()
+    if current_user.role_includes?(:librarian)
+
+    else
+    end
   end
 
   private

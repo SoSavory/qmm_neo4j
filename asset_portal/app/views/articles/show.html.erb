@@ -1,7 +1,7 @@
 <div class="article">
 
   <span>
-    <%= @article.title %>
+    <%= @article.raw_article.title %>
   </span>
   <br/>
   <% @article.authors.each do |author| %>
@@ -12,6 +12,6 @@
     Abstract
   </span>
   <p>
-    <%= @article.abstract %>
+    <%= @article.raw_article.abstract %>
   </p>
 </div>

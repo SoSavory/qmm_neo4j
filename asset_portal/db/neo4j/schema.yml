@@ -18,6 +18,9 @@
 - CONSTRAINT ON ( author:Author ) ASSERT author.uuid IS UNIQUE
 - CONSTRAINT ON ( person:Person ) ASSERT person.uuid IS UNIQUE
 - CONSTRAINT ON ( rawarticle:RawArticle ) ASSERT rawarticle.uuid IS UNIQUE
+- CONSTRAINT ON ( role:Role ) ASSERT role.uuid IS UNIQUE
+- CONSTRAINT ON ( tag:Tag ) ASSERT tag.uuid IS UNIQUE
+- CONSTRAINT ON ( taggroup:TagGroup ) ASSERT taggroup.uuid IS UNIQUE
 - CONSTRAINT ON ( user:User ) ASSERT user.uuid IS UNIQUE
 :indexes: []
 :versions:
@@ -26,3 +29,6 @@
 - '20180130225046'
 - '20180130225052'
 - '20180213032624'
+- '20180611201101'
+- '20180611201134'
+- '20180611211525'

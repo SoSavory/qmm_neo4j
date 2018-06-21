@@ -20,16 +20,45 @@ a2 = Author.create(institution: 'University of North Carolina Chapel Hill')
 p1.authors << a1
 p2.authors << a2
 
-a1.person = p1
-a2.person = p2
+# Create tags here
 
-for i in 0..10
-  a = Article.create(title: "Article number #{i}", abstract: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-")
-  a.authors << [a1,a2]
-end
+tg1 = TagGroup.create(name: "Interaction")
+  t1 = Tag.create(name: "Zero Range")
+  t2 = Tag.create(name: "Finite Range")
+  t3 = Tag.create(name: "Dipole")
+  t4 = Tag.create(name: "Long Range")
+  tg1.tags << [t1,t2,t3,t4]
 
-Article.all.each do |a|
-  a1.articles << a
-  a2.articles << a
-end
+tg2 = TagGroup.create(name: "Spatial Dimension")
+  t5 = Tag.create(name: "1")
+  t6 = Tag.create(name: "2")
+  t7 = Tag.create(name: "3")
+  tg2.tags << [t5,t6,t7]
+
+tg3 = TagGroup.create(name: "External Potential")
+  t8 = Tag.create(name: "None")
+  t9 = Tag.create(name: "Lattice")
+  t10 = Tag.create(name: "Harmonic")
+  tg3.tags << [t8,t9,t10]
+
+tg4 = TagGroup.create(name: "Statistics Type")
+  t11 = Tag.create(name: "Fermi")
+  t12 = Tag.create(name: "Bose")
+  t13 = Tag.create(name: "Boltzmann")
+  tg4.tags << [t11, t12, t13]
+
+tg5 = TagGroup.create(name: "Temperature")
+  t14 = Tag.create(name: "Zero")
+  t15 = Tag.create(name: "Finite")
+  tg5.tags << [t14,t15]
+
+tg6 = TagGroup.create(name: "Particle Number")
+  t16 = Tag.create(name: "Few")
+  t17 = Tag.create(name: "Many")
+  tg6.tags << [t16, t17]
+
+
+# Create roles here
+
+r = Role.create(name: "librarian")
+r.users << [u1, u2]

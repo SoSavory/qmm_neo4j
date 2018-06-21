@@ -1,7 +1,8 @@
 class RawArticle
   include Neo4j::ActiveNode
 
-  has_one :out, :importer, type: :importer, model_class: :User
+  has_one :in, :importer, type: :IMPORTED_BY, model_class: :User
+  has_one :out, :article, type: :ARTICLE, model_class: :Article
 
   property :arxiv_identifier, type: String
   property :short_arxiv_identifier, type: String
@@ -12,7 +13,5 @@ class RawArticle
   property :categories, type: String
   property :doi, type: String
   property :abstract, type: String
-
-
 
 end

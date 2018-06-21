@@ -1,10 +1,11 @@
 class User
   include Neo4j::ActiveNode
 
-  has_one :out, :person, type: :person, model_class: :Person
+  has_one :out, :person, type: :IS, model_class: :Person
 
-  has_many :in, :curated_articles, type: :curated_article, model_class: :Article
-  has_many :in, :raw_articles, type: :raw_article, model_class: :RawArticle
+  has_many :out, :imports, type: :IMPORTED_BY, model_class: :RawArticle
+
+  has_many :out, :roles, type: :USER_ROLE, model_class: :Role
 
   property :email, type: String
   property :token, type: String
@@ -42,6 +43,10 @@ class User
 
   def import
     nil
+  end
+
+  def role_includes?(role)
+    self.roles.pluck(:name).map{|r| r.to_sym }.include?(role)
   end
 
   private

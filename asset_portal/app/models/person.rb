@@ -4,7 +4,7 @@ class Person
   property :first_name, type: String
   property :last_name, type: String
 
-  has_many :out, :authors, type: :author, model_class: :Author
-  has_one :out, :user, type: :user, model_class: :User
+  has_many :out, :authors, type: :AUTHORED_UNDER, model_class: :Author
+  has_one :out, :user, type: :IS, model_class: :User
 
 end

@@ -1,16 +1,27 @@
-<div class="article">
+<div class="left_right_container">
 
-  <span>
-    <%= @raw_article.short_arxiv_identifier %>
-    <%= @raw_article.title %>
-  </span>
-  <br/>
-  <%= @raw_article.authors %>
-  <br/>
-  <span>
-    Abstract
-  </span>
-  <p>
-    <%= @raw_article.abstract %>
-  </p>
+  <div class="left">
+    <h2>ArXiv Data</h2>
+    <div class="article">
+
+      <span>
+        <%= @raw_article.short_arxiv_identifier %>
+        <br>
+        <a href="http://www.arxiv.org/abs/<%=@raw_article.short_arxiv_identifier %>" target="_blank"><%= @raw_article.title %></a>
+      </span>
+      <br/>
+      <%= @raw_article.authors %>
+      <br/>
+
+      <p>
+        <%= @raw_article.abstract %>
+      </p>
+    </div>
+  </div>
+
+  <div class="right">
+    <h2>Fill Out</h2>
+    <%= render partial: "curate_form", locals: {article: @article, tag_groups: @tag_groups, raw_article: @raw_article} %>
+  </div>
+
 </div>
