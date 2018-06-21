@@ -4,7 +4,7 @@
       <%= link_to article.raw_article.title, article_path(article.id) %>
       <br>
       <% article.authors.each do |author| %>
-        <%= link_to "[#{author.person.last_name}, #{author.person.first_name}]", author_path(author.id) %>
+        <%= link_to "[#{author.person.last_name.humanize}, #{author.person.first_name.humanize}]", author_path(author.id) %>
       <% end %>
       <div class="abstract"><%= article.raw_article.abstract%></div>
     </div>

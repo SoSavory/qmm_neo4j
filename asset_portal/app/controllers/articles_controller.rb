@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
     authors = []
     puts params[:article][:curating_authors]
     params[:article][:curating_authors].each { |k,v|
-      person = Person.find_or_create(first_name: v[:person][:first_name], last_name: v[:person][:last_name])
+      person = Person.find_or_create(first_name: v[:person][:first_name].strip.downcase, last_name: v[:person][:last_name].strip.downcase)
       author_init = person.authors.where(institution: v[:institution])
       author = author_init.exists? ? author_init : Author.create(institution: v[:institution])
       person.authors << author
