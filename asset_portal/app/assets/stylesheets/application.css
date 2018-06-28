@@ -78,7 +78,7 @@ p:hover{
   height: 250px;
   background-color: rgba(48,51,58,0.98);
   z-index: 1;
-
+  padding-bottom: 0.5em;
 }
 
 #under_search_bar_content{
@@ -173,6 +173,7 @@ p:hover{
   position: relative;
   float: right;
   margin-right: 1em;
+
 }
 
 #under_search_bar #bottom .button{

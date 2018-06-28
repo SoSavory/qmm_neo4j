@@ -14,4 +14,11 @@
   <p>
     <%= @article.raw_article.abstract %>
   </p>
+  <div class="tag_container">
+    <span>Tags</span>
+    <br/>
+    <% @article.tags.each do |tag| %>
+      <span>[<%= tag.name %>]</span>
+    <% end %>
+  </div>
 </div>

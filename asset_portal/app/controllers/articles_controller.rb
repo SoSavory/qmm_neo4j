@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def show
-    @article = Article.where(uuid: params[:id]).with_associations(authors: :person).first
+    @article = Article.where(uuid: params[:id]).with_associations([authors: :person], :tags).first
   end
 
   def index

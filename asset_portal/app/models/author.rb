@@ -6,4 +6,7 @@ class Author
 
   property :institution, type: String
 
+  def institution=(institution)
+    institution.strip.downcase
+  end
 end
