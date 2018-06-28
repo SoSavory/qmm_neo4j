@@ -5,7 +5,7 @@
   </span>
   <br/>
   <% @article.authors.each do |author| %>
-    <%= link_to "[#{author.person.last_name.humanize}, #{author.person.first_name.humanize}]", author_path(author.id) %>
+    <%= link_to "[#{author.person.name}]", author_path(author.id) %>
   <% end %>
   <br/>
   <span>

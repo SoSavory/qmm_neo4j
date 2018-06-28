@@ -11,14 +11,14 @@ class ArticlesController < ApplicationController
     authors = []
     puts params[:article][:curating_authors]
     params[:article][:curating_authors].each { |k,v|
-      person = Person.find_or_create(first_name: v[:person][:first_name].strip.downcase, last_name: v[:person][:last_name].strip.downcase)
+      person = Person.find_or_create(first_name: v[:person][:first_name], last_name: v[:person][:last_name])
       author_init = person.authors.where(institution: v[:institution])
       author = author_init.exists? ? author_init : Author.create(institution: v[:institution])
       person.authors << author
       authors << author
     }
 
-    tags = Tag.find(params[:article][:tag_ids].uniq.reject{|t| t.blank? })
+    tags = Tag.where(uuid: params[:article][:tag_ids].uniq.reject{|t| t.blank? })
     raw_article = RawArticle.find(params[:article][:raw_article_id])
     a = Article.new()
     a.authors << authors
@@ -28,9 +28,14 @@ class ArticlesController < ApplicationController
     redirect_to raw_articles_path
   end
 
+  def search
+    @articles =  Article.search(params[:search][:search_text], params[:search][:tag_ids].uniq.reject{|t| t.blank? }).pluck(:a)
+    render "index"
+  end
+
   private
   def article_params
-    params.require(:article).permit(:tag_ids, curating_authors: [])
+    params.require(:article).permit(:tag_ids, :search_text, curating_authors: [])
   end
 end
 # (:tag_ids, :raw_article_id, curating_authors_attributes: {person: [:first_name, :last_name]})

@@ -33,18 +33,6 @@ class User
     @password_confirmation = unencrypted_password
   end
 
-  def first_name
-    nil
-  end
-
-  def last_name
-    nil
-  end
-
-  def import
-    nil
-  end
-
   def role_includes?(role)
     self.roles.pluck(:name).map{|r| r.to_sym }.include?(role)
   end

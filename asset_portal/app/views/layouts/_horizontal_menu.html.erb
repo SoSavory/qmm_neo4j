@@ -1,11 +1,43 @@
 <div id="horizontal_menu" class="menu">
   <a class="logo" href="/">QMM</a>
 
-    <form id="search_form">
+  <%= form_for(:search, url: search_path, method: "get", html: {id: "search_form"}) do |f| %>
+    <%= f.text_field :search_text, placeholder: "Search", autofocus: true, id: "search_bar" %>
+    <div id="under_search_bar">
+      <div id="under_search_bar_content">
+
+          <% @tag_groups.each do |tg| %>
+            <div class="search_category">
+            <span class="first"><%= tg.name %></span>
+            <%= f.collection_check_boxes :tag_ids, tg.tags, :id, :name do |c| %>
+              <%= c.label class: "check_container" do %>
+                <%= c.text %>
+                <%= c.check_box %>
+                <span class="checkmark">
+              <% end %>
+            <% end %>
+            </div>
+          <% end %>
+        </div>
+          <div id="bottom">
+            <a href="#" class="button red">Clear</a>
+            <a href="#" class="button yellow">Cancel</a>
+            <%= f.submit "Search", class: "button green" %>
+          </div>
+
+    </div>
+  <% end %>
+
+    <!-- <form id="search_form">
       <input id="search_bar" type="text" placeholder="Search" autofocus></input>
       <div id="under_search_bar">
         <div id="under_search_bar_content">
-          <div class="search_category">
+
+
+
+
+
+           <div class="search_category">
             <span class="first">Interaction</span>
 
             <label class="check_container">Zero Range
@@ -124,16 +156,16 @@
             </label>
 
 
-          </div>
+          </div> -->
 
-        </div>
+        <!-- </div>
         <div id="bottom">
           <a class="button yellow" href="#">Cancel</a>
           <a class="button red" href="#">Clear</a>
           <a class="button green" href="#">Submit</a>
         </div>
       </div>
-    </form>
+    </form> -->
     <div style="display: flex; flex-direction: row; width: 10%; justify-content: space-between;">
       <% if logged_in? %>
         <%= link_to "My Account", user_path(current_user.id), class: "search_side_link" %>

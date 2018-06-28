@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get 'authors/get_fields/:count', to: 'authors#get_fields', as: :get_author_fields
   resources :articles
     get 'article/get_pagination_splines', to: 'articles#get_pagination_splines', as: :get_article_pagination_splines
+    get '/search', to: 'articles#search', as: :search
   resources :users
   resources :raw_articles
     get 'raw_article/get_pagination_splines', to: 'raw_articles#get_pagination_splines', as: :get_raw_article_pagination_splines

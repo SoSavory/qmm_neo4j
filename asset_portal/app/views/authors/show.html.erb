@@ -1,15 +1,15 @@
-<h3><%= "#{@author.person.first_name.humanize} #{@author.person.last_name.humanize}" %></h3>
+<h3><%= @author.person.name %></h3>
 <span>Publications: <%= @author.articles.count %></span>
 
 <div id="search_results">
-  <% @articles.each do |article| %>
+  <% @author.articles.each do |article| %>
     <div class="search_result">
-      <%= link_to article.title, article_path(article.id) %>
+      <%= link_to article.raw_article.title, article_path(article.id) %>
       <br>
       <% article.authors.each do |author| %>
-        <%= link_to "[#{author.person.last_name.humanize}, #{author.person.first_name.humanize}]", author_path(author.id) %>
+        <%= link_to "[#{author.person.name}]", author_path(author.id) %>
       <% end %>
-        <div class="abstract"><%= article.abstract%></div>
+        <div class="abstract"><%= article.raw_article.abstract%></div>
       </div>
   <% end %>
 </div>

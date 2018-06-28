@@ -1,7 +1,6 @@
 class AuthorsController < ApplicationController
   def show
-    @author = Author.where(id: params[:id]).with_associations(person: :user).first
-    @articles = Article.where(authors: @author).with_associations(authors: :person)
+    @author = Author.find_by(id: params[:id])
   end
 
   def get_fields
