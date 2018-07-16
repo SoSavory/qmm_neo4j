@@ -3,9 +3,7 @@
     <div class="search_result">
       <%= link_to article.raw_article.title, article_path(article.id) %>
       <br>
-      <% article.authors.each do |author| %>
-        <%= link_to "[#{author.person.name}]", author_path(author.id) %>
-      <% end %>
+      <%= article.raw_article.authors %>
       <div class="abstract"><%= article.raw_article.abstract%></div>
     </div>
   <% end %>

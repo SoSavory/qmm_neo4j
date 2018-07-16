@@ -4,9 +4,7 @@
     <%= @article.raw_article.title %>
   </span>
   <br/>
-  <% @article.authors.each do |author| %>
-    <%= link_to "[#{author.person.name}]", author_path(author.id) %>
-  <% end %>
+  <%= @article.authors %>
   <br/>
   <span>
     Abstract

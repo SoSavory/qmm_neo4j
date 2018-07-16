@@ -2,7 +2,33 @@
 
 <span>Articles: <%= @articles.count %></span>
 <br/>
-<span>Institutions:</span>
-<% @authors.each do |author| %>
-  <%= author.institution %>
+
+<% if @curations > 0 %>
+  <div class="list_container_container">
+    <div class="title_container">
+      <h5 class="title">Curated Articles: <%= @curations %></h5>
+    </div>
+    <div class="list_container">
+      <ul id="user_curated_articles_list_container">
+      </ul>
+    </div>
+    <div id="user_curated_articles_list_pagination_container" class="pagination_container">
+    </div>
+  </div>
+  <script type="text/javascript">
+
+    populatePagination("user_curated_articles_list_pagination_container", "links", <%= @curations %>, 10, "updateIndex");
+
+    function updateIndex(spline){
+      $.ajax({
+        method: 'GET',
+        url: "<%= j get_user_curated_articles_path(ajax: 'true', id: @user.id) %>" + "&curated_article_spline=" + spline,
+        success: function( response ){
+          $("#user_curated_articles_list_container").html(response);
+        }
+      })
+    }
+
+    updateIndex(0);
+  </script>
 <% end %>

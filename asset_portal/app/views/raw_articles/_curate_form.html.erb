@@ -6,33 +6,5 @@
     <%= f.collection_check_boxes :tag_ids, tag_group.tags, :id, :name %>
   <% end %>
 
-  <div class="curation_form_area">
-    <!-- Needs to be a nested form -->
-    <h3>Authors</h3>
-    <div id="author_forms_area">
-
-    <%= render partial: "authors/form", locals: {f: f} %>
-  </div>
-    <a id="add_author_fields_button" href="#" onClick="event.preventDefault();addAuthorFields();" data-c="1">Add Author</a>
-  </div>
-
   <%= f.submit "Curate!" %>
-  <script type="text/javascript">
-    var authors_count = $("#add_author_fields_button").data('c');
-    function addAuthorFields(){
-
-      $.ajax(
-        {
-          type: 'GET',
-          url: "/authors/get_fields/" + String(authors_count),
-          contentType: 'application/json',
-          success: function( response ){
-            $('#author_forms_area').append(response)
-            authors_count++;
-          }
-        }
-      );
-
-    }
-  </script>
 <% end %>

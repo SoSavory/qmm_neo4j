@@ -4,7 +4,6 @@ class User
   has_one :out, :person, type: :IS, model_class: :Person
 
   has_many :out, :imports, type: :IMPORTED_BY, model_class: :RawArticle
-
   has_many :out, :roles, type: :USER_ROLE, model_class: :Role
 
   property :email, type: String

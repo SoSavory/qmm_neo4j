@@ -16,10 +16,10 @@
 //= require_tree .
 
 
-function getPaginationSplines(resource, successCallback, failureCallback){
+function getPaginationSplines(url, successCallback, failureCallback){
   $.ajax({
     method: "GET",
-    url: "http://localhost:3000/" + resource + "/get_pagination_splines",
+    url: url,
     success: function( response ){
       successCallback(response);
     },
@@ -27,4 +27,14 @@ function getPaginationSplines(resource, successCallback, failureCallback){
       failureCallback();
     }
   })
+}
+// Action needs to somehow interpret, as well as the link content
+function populatePagination(target, mode, count, spline_size, action){
+  if (mode == "links"){
+    for (let i = 0; i < Math.ceil(count/spline_size); i++){
+      $('#'+target+'').append(
+        '<a class="pagination_link" onclick="event.preventDefault();'+action+'(' + i + ');">' + String(i+1) + '</a>'
+      )
+    }
+  }
 }

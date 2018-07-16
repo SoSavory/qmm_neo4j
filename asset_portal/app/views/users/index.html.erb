@@ -1,0 +1,8 @@
+,<h4>Users: <%= @users_count %></h4>
+
+<% @users.each do |user| %>
+  <div class="search-result">
+    <%= link_to user.person.name, user_path(user) %>
+  </div>
+
+<% end %>

@@ -4,13 +4,9 @@
 <div id="raw_articles_pagination_container" class="pagination_container">
 </div>
 <script type="text/javascript">
-  getPaginationSplines("raw_article",
+  getPaginationSplines( "<%= j get_raw_article_pagination_splines_path %>",
     function(data){
-      for (let i = 0; i < Math.ceil(data/10); i++){
-        $('#raw_articles_pagination_container').append(
-          '<a class="pagination_link" onclick="event.preventDefault();updateIndex(' + i + ');">' + String(i+1) + '</a>'
-        )
-      }
+      populatePagination("raw_articles_pagination_container", "links", data, 10, "updateIndex");
     },
     function(data){
       console.log("Something Went Wrong");
@@ -20,7 +16,7 @@
   function updateIndex(spline){
     $.ajax({
       method: 'GET',
-      url: "http://localhost:3000/raw_articles?ajax=true&raw_article_spline=" + spline,
+      url: "/raw_articles?ajax=true&raw_article_spline=" + spline,
       success: function( response ){
         $("#search_results").html(response);
       }

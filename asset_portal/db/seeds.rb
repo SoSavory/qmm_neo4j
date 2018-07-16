@@ -14,12 +14,6 @@ p2 = Person.create(first_name: 'Joaquin', last_name: 'Drut')
 u1.person = p1
 u2.person = p2
 
-a1 = Author.create(institution: 'University of North Carolina Chapel Hill')
-a2 = Author.create(institution: 'University of North Carolina Chapel Hill')
-
-p1.authors << a1
-p2.authors << a2
-
 # Create tags here
 
 tg1 = TagGroup.create(name: "Interaction")

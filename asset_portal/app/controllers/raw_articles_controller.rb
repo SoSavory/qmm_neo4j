@@ -3,7 +3,7 @@ class RawArticlesController < ApplicationController
   # AJAX request client side hits this, then on complete callback triggers index with the given :raw_article_spline param.
   # Client side populates the pagination widget, and calculates the how the pages are split, as long as logic agrees. All this does is return a number
   def get_pagination_splines
-    render json: RawArticle.where(importer: current_user).count()
+    render json: current_user.imports(:i).where("NOT((i)-[:ARTICLE]->())").pluck("count(*)").first
   end
 
   def index
@@ -30,13 +30,6 @@ class RawArticlesController < ApplicationController
       if @raw_article.importer == current_user
         @article = Article.new()
       end
-    end
-  end
-
-  def curate
-    if current_user.role_includes?(:librarian)
-
-    else
     end
   end
 

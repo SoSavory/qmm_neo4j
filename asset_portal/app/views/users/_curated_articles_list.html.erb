@@ -1,0 +1,5 @@
+<% @curated_articles.each do |c| %>
+  <li>
+    <%= link_to c.raw_article.title, article_path(c.id) %>
+  </li>
+<% end %>

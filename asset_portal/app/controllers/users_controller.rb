@@ -21,16 +21,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.where(id: params[:id]).with_associations(person: :authors).first
-    if @user.person
-      @person = @user.person
-      if @person.authors
-        @authors = @person.authors
-        if @authors.articles
-          @articles = @authors.articles
-        end
-      end
-    end
+    @user = User.where(id: params[:id]).with_associations(:imports, :person).first
+    @curations = @user.imports.article.pluck("count(*)").first
+  end
+
+  def index
+    @users = User.all.with_associations(:person)
+    @users_count = User.all.pluck("count(*)").first
   end
 
   def import
@@ -71,6 +68,16 @@ class UsersController < ApplicationController
     end
 
     redirect_to import_path
+  end
+
+
+  # We dont need a pagination_spline method because we preload the count in the show method.
+  def get_user_curated_articles
+
+    @curated_articles = User.find(params[:id]).imports.article.limit(10).offset(10*params[:curated_article_spline].to_i)
+    if params[:ajax] == "true"
+      render partial: "curated_articles_list", layout: false
+    end
   end
 
   private
