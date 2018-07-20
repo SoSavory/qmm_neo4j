@@ -1,11 +1,15 @@
 class ArticlesController < ApplicationController
   def show
-    @article = Article.where(uuid: params[:id]).with_associations(:tags).first
+    @article = Article.find_by(uuid: params[:id])
   end
 
   def index
     # Need to refactor this to take pagination
-    @articles = Article.all
+    spline = params[:search_result_article_spline] || 0
+    @articles_count = Article.all.pluck("count(*)").first
+    @searched_params = { search_text: '', search_tags: ["ansr"] }
+    @articles =  Article.search('', ["ansr"]).limit(10).offset(10*params[:search_result_article_spline].to_i).pluck(:a)
+
   end
 
   def create
@@ -20,8 +24,18 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    @articles =  Article.search(params[:search][:search_text], params[:search][:tag_ids].uniq.reject{|t| t.blank? }).pluck(:a)
-    render "index"
+    # Have to save search params somehow
+
+    @articles =  Article.search(params[:search][:search_text], params[:search][:tag_ids].uniq.reject{|t| t.blank? }).limit(10).offset(10*params[:search_result_article_spline].to_i).pluck(:a)
+    @articles_count = Article.search(params[:search][:search_text], params[:search][:tag_ids].uniq.reject{|t| t.blank? }).pluck("count(*)").first
+
+    @searched_params = {search_text: params[:search][:search_text], search_tags: params[:search][:tag_ids]}
+
+    if params[:ajax] == "true"
+      render partial: "search_results", layout: false
+    else
+      render "index"
+    end
   end
 
   private

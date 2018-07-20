@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   mathjax 'mathjax'
 
   resources :articles
-    get 'article/get_pagination_splines', to: 'articles#get_pagination_splines', as: :get_article_pagination_splines
     get '/search', to: 'articles#search', as: :search
   resources :users
     get 'user/get_curated_articles_pagination_splines', to: 'users#get_user_curated_articles_pagination_splines', as: :get_user_curated_articles_pagination_splines
@@ -21,6 +20,9 @@ Rails.application.routes.draw do
 
   get '/import', to: 'users#import', as: :import
   post '/parse_import', to: 'users#parse_import', as: :parse_import
+
+  get '/import_specific', to: 'users#import_specific', as: :import_specific
+  post '/parse_import_specific', to: 'users#parse_import_specific', as: :parse_import_specific
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

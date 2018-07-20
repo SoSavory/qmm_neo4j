@@ -1,0 +1,59 @@
+<div style="display: flex;">
+  <%= label_tag :url, "URL: " %>
+  <%= text_field_tag :url %>
+
+  <button onclick="getFromArxivWithURL();">Get</button>
+</div>
+
+<br>
+<%= render partial: "raw_articles/form", locals: { record: @raw_article, url: parse_import_specific_path, tag_groups: TagGroup.all } %>
+
+
+<script>
+  function getFromArxivWithURL(){
+    // Sample URL looks like: https://arxiv.org/abs/1807.06593
+    var url = $("input[type=text][name=url]").val();
+    var re = /\d+.+\d/;
+    var identifier = re.exec(url);
+    $.ajax({
+      method: "GET",
+      url: "http://export.arxiv.org/api/query?search_query=" + re.exec(url),
+      success: function( response ){
+
+        var feed = $(response).find('feed');
+        var entry = feed.find('entry');
+
+        var identifier = entry.find('id')[0].innerHTML;
+        var title = entry.find('title')[0].innerHTML;
+        var short_arxiv_identifier = re.exec(url);
+      
+        var authors_arr = [];
+          $.each(entry.find('author'), function(index, author){
+            authors_arr.push($(author).find('name')[0].innerHTML)
+          });
+          var authors = authors_arr.join(", ");
+        var categories_arr = [];
+          $.each(entry.find('category'), function(index, category){
+            categories_arr.push($(category)[0].attributes.term.nodeValue);
+          });
+          var categories = categories_arr.join(", ");
+
+        var doi = entry.find("arxiv\\:doi")[0].innerHTML;
+        console.log(doi);
+        var abstract = entry.find('summary')[0].innerHTML;
+
+        $("#raw_article_arxiv_identifier").val(identifier);
+        $("#raw_article_short_arxiv_identifier").val(short_arxiv_identifier);
+        $("#raw_article_title").val(title);
+        $("#raw_article_authors").val(authors);
+        $("#raw_article_categories").val(categories);
+        $("#raw_article_doi").val(doi);
+        $("#raw_article_abstract").val(abstract);
+
+      },
+      error: function( response ){
+        console.log(response);
+      }
+    });
+  }
+</script>

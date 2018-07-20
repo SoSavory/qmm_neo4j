@@ -3,7 +3,7 @@
   <%= f.hidden_field :raw_article_id, value: raw_article.id %>
   <% tag_groups.each do |tag_group| %>
     <h3><%= tag_group.name %></h3>
-    <%= f.collection_check_boxes :tag_ids, tag_group.tags, :id, :name %>
+    <%= f.collection_check_boxes :tag_ids, tag_group.tags.order_by("result_tags.name ASC"), :id, :name %>
   <% end %>
 
   <%= f.submit "Curate!" %>

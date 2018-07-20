@@ -10,6 +10,8 @@ class User
   property :token, type: String
   property :password_digest, type: String
 
+  attr_accessor :first_name, :last_name
+
   def authenticate(unencrypted_password)
     BCrypt::Password.new(password_digest).is_password?(unencrypted_password) && self
   end

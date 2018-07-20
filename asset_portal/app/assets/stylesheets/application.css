@@ -279,7 +279,7 @@ p:hover{
   display: flex;
   flex-direction: column;
   width: 81%;
-  max-height: 500px;
+
   overflow-y: auto;
 }
 
@@ -391,4 +391,10 @@ p:hover{
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 0.2em;
+}
+
+div.field{
+  display: flex;
+  flex-direction: column;
+  padding: 0.25em;
 }

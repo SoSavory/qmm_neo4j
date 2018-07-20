@@ -5,7 +5,7 @@ class Article
   has_many :out, :tags, type: :TAGGED_BY, model_class: :Tag
 
   has_one :in, :raw_article, type: :ARTICLE, model_class: :RawArticle
-  
+
   def self.search(search_text, tag_ids)
     unless tag_ids.blank?
       self.as(:a).branch{

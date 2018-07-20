@@ -2,7 +2,8 @@
   <ul>
     <li><%= link_to "Articles", articles_path %></li>
     <% if current_user&.role_includes?(:librarian) %>
-      <li><%= link_to "Import", import_path %></li>
+      <li><%= link_to "Bulk Import", import_path %></li>
+      <li><%= link_to "Import One", import_specific_path %></li>
       <li><%= link_to "New Articles", raw_articles_path %></li>
     <% end %>
   </ul>

@@ -1,10 +1,28 @@
-<div id="search_results">
-  <% @articles.each do |article| %>
-    <div class="search_result">
-      <%= link_to article.raw_article.title, article_path(article.id) %>
-      <br>
-      <%= article.raw_article.authors %>
-      <div class="abstract"><%= article.raw_article.abstract%></div>
-    </div>
-  <% end %>
-</div>
+
+<% if @articles_count > 0 %>
+  <div class="title_container">
+    <h5 class="title">Search Results: <%= @articles_count %></h5>
+  </div>
+  <div id="search_results_container">
+
+  </div>
+  <div id="search_results_pagination_container" class="pagination_container">
+  </div>
+  <script type="text/javascript">
+
+    populatePagination("search_results_pagination_container", "links", <%= @articles_count %>, 10, "updateIndex");
+
+    function updateIndex(spline){
+      $.ajax({
+        method: 'GET',
+        url: "<%= j search_path(ajax: 'true', search: {search_text: @searched_params[:search_text], tag_ids: @searched_params[:search_tags]}) %>" + "&search_result_article_spline=" + spline,
+        success: function( response ){
+          console.log(response);
+          $("#search_results_container").html(response);
+        }
+      })
+    }
+
+    updateIndex(0);
+  </script>
+<% end %>

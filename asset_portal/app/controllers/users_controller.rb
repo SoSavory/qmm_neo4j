@@ -2,13 +2,14 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new()
+    @person = Person.new
   end
 
   def create
     @user = User.new(email: params[:user][:email],
                      password: params[:user][:password]
                     )
-    @person = Person.new(first_name: params[:user][:first_name],
+    @person = Person.find_or_create(first_name: params[:user][:first_name],
                          last_name: params[:user][:last_name]
                         )
 
@@ -28,6 +29,35 @@ class UsersController < ApplicationController
   def index
     @users = User.all.with_associations(:person)
     @users_count = User.all.pluck("count(*)").first
+  end
+
+  def import_specific
+    @raw_article = RawArticle.new
+    @article = Article.new
+  end
+
+  def parse_import_specific
+    unless RawArticle.where(short_arxiv_identifier: params[:raw_article][:short_arxiv_identifier]).exists?
+      raw_article = RawArticle.new(arxiv_identifier: params[:raw_article][:arxiv_identifier],
+                                   short_arxiv_identifier: params[:raw_article][:short_arxiv_identifier],
+                                   datestamp: params[:raw_article][:datestamp],
+                                   submitter: params[:raw_article][:submitter],
+                                   title: params[:raw_article][:title],
+                                   authors: params[:raw_article][:authors],
+                                   categories: params[:raw_article][:categories],
+                                   doi: params[:raw_article][:doi],
+                                   abstract: params[:raw_article][:abstract])
+      raw_article.importer = current_user
+      raw_article.save!
+
+      tags = Tag.where(uuid: params[:raw_article][:tag_ids].uniq.reject{|t| t.blank? })
+
+      article = Article.new()
+      article.tags << tags
+      article.raw_article = raw_article
+      article.save
+    end
+    redirect_to import_specific_path
   end
 
   def import
@@ -82,6 +112,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user, :import).permit(:email, :password, :password_confirmation, :first_name, :last_name, :import)
+    params.require(:user, :import, :raw_article).permit(:email, :password, :password_confirmation, :first_name, :last_name, :import)
   end
 end

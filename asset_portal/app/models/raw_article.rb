@@ -1,6 +1,8 @@
 class RawArticle
   include Neo4j::ActiveNode
 
+  attr_accessor :tag_ids
+  
   has_one :in, :importer, type: :IMPORTED_BY, model_class: :User
   has_one :out, :article, type: :ARTICLE, model_class: :Article
 
