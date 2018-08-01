@@ -9,7 +9,6 @@ class ArticlesController < ApplicationController
     @articles_count = Article.all.pluck("count(*)").first
     @searched_params = { search_text: '', search_tags: ["ansr"] }
     @articles =  Article.search('', ["ansr"]).limit(10).offset(10*params[:search_result_article_spline].to_i).pluck(:a)
-
   end
 
   def create
