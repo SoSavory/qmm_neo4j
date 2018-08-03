@@ -10,7 +10,7 @@ class Article
     if !tag_ids.blank? && !search_text.blank?
       self.as(:a).branch{
         raw_article.as(:r)
-        .where("r.title CONTAINS({search_text}) OR r.abstract CONTAINS({search_text}) OR r.authors CONTAINS({search_text})")
+        .where("toLower(r.title) CONTAINS({search_text}) OR toLower(r.abstract) CONTAINS({search_text}) OR toLower(r.authors) CONTAINS({search_text})")
       }
       .tags.query_as(:t)
       .where("(a)-[:TAGGED_BY]->(t)")
@@ -20,7 +20,7 @@ class Article
       .params(tag_ids: tag_ids, search_text: search_text)
     elsif tag_ids.blank? && !search_text.blank?
       self.as(:a).raw_article.as(:r)
-      .where("r.title CONTAINS({search_text}) OR r.abstract CONTAINS({search_text}) OR r.authors CONTAINS({search_text})").params(search_text: search_text)
+      .where("toLower(r.title) CONTAINS({search_text}) OR toLower(r.abstract) CONTAINS({search_text}) OR toLower(r.authors) CONTAINS({search_text})").params(search_text: search_text)
     elsif !tag_ids.blank? && tag_ids[0] != "ansr" && search_text.blank?
       self.as(:a).tags.query_as(:t)
       .where("(a)-[:TAGGED_BY]->(t)")

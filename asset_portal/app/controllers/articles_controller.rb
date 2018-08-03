@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
     @articles =  Article.search(params[:search][:search_text], params[:search][:tag_ids].uniq.reject{|t| t.blank? }).limit(10).offset(10*params[:search_result_article_spline].to_i).pluck(:a)
     @articles_count = Article.search(params[:search][:search_text], params[:search][:tag_ids].uniq.reject{|t| t.blank? }).pluck("count(*)").first
 
-    @searched_params = {search_text: params[:search][:search_text], search_tags: params[:search][:tag_ids]}
+    @searched_params = {search_text: params[:search][:search_text].downcase, search_tags: params[:search][:tag_ids]}
 
     if params[:ajax] == "true"
       render partial: "search_results", layout: false
