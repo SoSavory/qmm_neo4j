@@ -6,7 +6,7 @@
 </div>
 
 <br>
-<%= render partial: "raw_articles/form", locals: { record: @raw_article, url: parse_import_specific_path, tag_groups: TagGroup.all } %>
+<%= render partial: "raw_articles/form", locals: { raw_article: @raw_article, url: parse_import_specific_path, tag_groups: TagGroup.all } %>
 
 
 <script>
@@ -26,7 +26,7 @@
         var identifier = entry.find('id')[0].innerHTML;
         var title = entry.find('title')[0].innerHTML;
         var short_arxiv_identifier = re.exec(url);
-      
+
         var authors_arr = [];
           $.each(entry.find('author'), function(index, author){
             authors_arr.push($(author).find('name')[0].innerHTML)

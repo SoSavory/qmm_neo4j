@@ -1,43 +1,43 @@
 
+<%= form_for raw_article, url: url do |f| %>
+  <div class="left_right_container">
 
-<div class="left_right_container">
-  <div class="left">
-  <%= form_for(record, url: url) do |f| %>
-    <div class="field">
-    <%= f.label :arxiv_identifier %>
-    <%= f.text_field :arxiv_identifier %>
-</div>
-  <div class="field">
-    <%= f.label :short_arxiv_identifier %>
-    <%= f.text_field :short_arxiv_identifier %>
+    <div class="left">
+        <div class="field">
+        <%= f.label :arxiv_identifier %>
+        <%= f.text_field :arxiv_identifier %>
+        </div>
+        <div class="field">
+          <%= f.label :short_arxiv_identifier %>
+          <%= f.text_field :short_arxiv_identifier %>
+          </div>
+        <div class="field">
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </div>
+        <div class="field">
+          <%= f.label :authors %>
+          <%= f.text_field :authors %>
+          </div>
+        <div class="field">
+          <%= f.label :categories %>
+          <%= f.text_field :categories %>
+        </div>
+        <div class="field">
+          <%= f.label :doi %>
+          <%= f.text_field :doi %>
+      </div>
+      <div class="field">
+        <%= f.label :abstract %>
+        <%= f.text_area :abstract %>
+      </div>
     </div>
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-</div>
-  <div class="field">
-    <%= f.label :authors %>
-    <%= f.text_field :authors %>
+    <div class="right">
+      <% tag_groups.each do |tag_group| %>
+        <h3><%= tag_group.name %></h3>
+        <%= f.collection_check_boxes :tag_ids, tag_group.tags.order_by("result_tags.name ASC"), :id, :name %>
+      <% end %>
+      <%= f.submit "Create Article" %>
     </div>
-  <div class="field">
-    <%= f.label :categories %>
-    <%= f.text_field :categories %>
-</div>
-  <div class="field">
-    <%= f.label :doi %>
-    <%= f.text_field :doi %>
-</div>
-  <div class="field">
-    <%= f.label :abstract %>
-    <%= f.text_area :abstract %>
   </div>
-</div>
-<div class="right">
-  <% tag_groups.each do |tag_group| %>
-    <h3><%= tag_group.name %></h3>
-    <%= f.collection_check_boxes :tag_ids, tag_group.tags.order_by("result_tags.name ASC"), :id, :name %>
-  <% end %>
-  <%= f.submit "Create Article" %>
-  <% end %>
-</div>
-</div>
+<% end %>
